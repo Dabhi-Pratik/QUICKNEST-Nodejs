@@ -8,29 +8,27 @@ import HttpError from "./middleware/HttpError.js";
 
 import UserRouter from "./router/UserRouter.js";
 import adminRouter from "./router/adminRouter.js";
-import bookingRouter from "./router/bookingRouter.js"
+import bookingRouter from "./router/bookingRouter.js";
 
-import providerRouter from "./router/providerRouter.js"
+import providerRouter from "./router/providerRouter.js";
 
-import {rateLimiter} from "./middleware/rateLimit.js"
+import { rateLimiter } from "./middleware/rateLimit.js";
 import helmet from "helmet";
 import hpp from "hpp";
 
 const app = express();
 
 app.use(express.json());
-app.use(rateLimiter)
+app.use(express.urlencoded({ extended: true }));
+app.use(rateLimiter);
 
-app.use(helmet())
-app.use(hpp()) 
-
-
+app.use(helmet());
+app.use(hpp());
 
 app.use("/user", UserRouter);
 app.use("/admin", adminRouter);
-app.use("/booking",bookingRouter)
-app.use("/provider",providerRouter)
-
+app.use("/booking", bookingRouter);
+app.use("/provider", providerRouter);
 
 app.get("/", (req, res, next) => {
   res.status(200).json("Hello from Server....!");
