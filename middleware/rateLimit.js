@@ -8,7 +8,7 @@ export const rateLimiter = rateLimit({
 
 export const authLimit = rateLimit({
     windowMs:15*60*1000,
-    limit:5,
+    limit:50,
     message:"Too many request from this Ip,Please try again after 15 minutes"
 })
  
