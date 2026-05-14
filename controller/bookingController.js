@@ -346,22 +346,23 @@ const getBookingById = async (req, res, next) => {
 
 const bookingByUserId = async (req, res, next) => {
   try {
-    let booking;
+    const userId = req.params.id || req.params._id;
 
-    let userId = req.params.id || req.params._id;
-
-    booking = await Booking.find({ userId }).populate(
+    const booking = await Booking.find({ userId }).populate(
       "serviceId",
       "name price description duration -_id",
     );
 
-    if (!booking) {
+    if (booking.length === 0) {
       return next(new HttpError("No Booking Data Found", 404));
     }
 
-    res.status(200).json({ success: true, booking });
+    res.status(200).json({
+      success: true,
+      booking,
+    });
   } catch (error) {
-    next(new HttpError(error.message));
+    next(new HttpError(error.message, 500));
   }
 };
 
