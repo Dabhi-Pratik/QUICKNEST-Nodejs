@@ -375,8 +375,6 @@ This project helps developers learn:
 ### 🔗 GitHub
 https://github.com/Dabhi-Pratik
 
-### 🔗 LinkedIn
-https://www.linkedin.com/in/pratik-dabhii/
 
 ---
 
